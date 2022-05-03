@@ -411,7 +411,7 @@ class Layout extends Model
         $thisCardInstance = new CardInstances;
         $thisLayoutCardInstances = $thisCardInstance->getLayoutCardInstancesById($layoutId, $orgId);
         if ($thisLayoutCardInstances == null) {
-            $layoutProperties = array('description' => $thisLayoutDescription, 'menu_label' => $thisLayoutLabel, 'height' => $thisLayoutHeight, 'width' => $thisLayoutHeight, 'backgroundColor' => $thisLayoutBackgroundColor, 'backGroundImageUrl' => $thisLayoutImageUrl, 'backgroundType' => $thisLayoutBackgroundType, 'backgroundDisplay'=>$thisBackgroundDisplay);
+            $layoutProperties = array('description' => $thisLayoutDescription, 'menu_label' => $thisLayoutLabel, 'height' => $thisLayoutHeight, 'width' => $thisLayoutHeight, 'backgroundColor' => $thisLayoutBackgroundColor, 'backgroundImageUrl' => $thisLayoutImageUrl, 'backgroundType' => $thisLayoutBackgroundType, 'backgroundDisplay'=>$thisBackgroundDisplay);
             $isAdmin = $this->isUserSuperAdmin($userId);
             if($isAdmin==0){
                 $thisLayoutPerms = $layoutInstance->summaryPermsForLayout($userId, $orgId, $layoutId);
@@ -525,7 +525,7 @@ class Layout extends Model
             $thisLayoutPerms = array('view'=>true, 'author'=>true, 'admin'=>true, 'opt1'=>true, 'opt2'=>true, 'opt3'=>true);
         }
         $thisLayoutPerms = $layoutInstance->summaryPermsForLayout($userId, $orgId, $layoutId);
-        $layoutProperties = array('description' => $thisLayoutDescription, 'menu_label' => $thisLayoutLabel, 'height' => $thisLayoutHeight, 'width' => $thisLayoutHeight, 'backgroundColor' => $thisLayoutBackgroundColor, 'backGroundImageUrl' => $thisLayoutImageUrl, 'backgroundType' => $thisLayoutBackgroundType, 'template'=>$thisLayoutTemplate );
+        $layoutProperties = array('description' => $thisLayoutDescription, 'menu_label' => $thisLayoutLabel, 'height' => $thisLayoutHeight, 'width' => $thisLayoutHeight, 'backgroundColor' => $thisLayoutBackgroundColor, 'backgroundImageUrl' => $thisLayoutImageUrl, 'backgroundType' => $thisLayoutBackgroundType, 'template'=>$thisLayoutTemplate );
         $returnData = array('cards' => $allCardInstances, 'layout' => $layoutProperties, 'perms' => $thisLayoutPerms);
         return $returnData;
     }
@@ -559,7 +559,7 @@ class Layout extends Model
         $thisCardInstance = new CardInstances;
         $thisLayoutCardInstances = $thisCardInstance->getLayoutCardInstancesById($layoutId->layout_id, $orgId);
         if ($thisLayoutCardInstances == null) {
-            $layoutProperties = array('description' => $thisLayoutDescription, 'menu_label' => $thisLayoutLabel, 'height' => $thisLayoutHeight, 'width' => $thisLayoutHeight, 'backgroundColor' => $thisLayoutBackgroundColor, 'backGroundImageUrl' => $thisLayoutImageUrl, 'backgroundType' => $thisLayoutBackgroundType);
+            $layoutProperties = array('description' => $thisLayoutDescription, 'menu_label' => $thisLayoutLabel, 'height' => $thisLayoutHeight, 'width' => $thisLayoutHeight, 'backgroundColor' => $thisLayoutBackgroundColor, 'backgroundImageUrl' => $thisLayoutImageUrl, 'backgroundType' => $thisLayoutBackgroundType);
             $thisLayoutPerms = $layoutInstance->summaryPermsForLayout($userId, $orgId, $layoutId->layout_id);
             $returnData = array('cards' => [], 'layout' => $layoutProperties, 'perms' => $thisLayoutPerms);
             return $returnData;
@@ -713,7 +713,7 @@ class Layout extends Model
             }
         }
         $thisLayoutPerms = $layoutInstance->summaryPermsForLayout($userId, $orgId, $layoutId->layout_id);
-        $layoutProperties = array('description' => $thisLayoutDescription, 'menu_label' => $thisLayoutLabel, 'height' => $thisLayoutHeight, 'width' => $thisLayoutHeight, 'backgroundColor' => $thisLayoutBackgroundColor, 'backGroundImageUrl' => $thisLayoutImageUrl, 'backgroundType' => $thisLayoutBackgroundType, 'hzLinkMenuColor'=>$hzLinkMenuColor);
+        $layoutProperties = array('description' => $thisLayoutDescription, 'menu_label' => $thisLayoutLabel, 'height' => $thisLayoutHeight, 'width' => $thisLayoutHeight, 'backgroundColor' => $thisLayoutBackgroundColor, 'backgroundImageUrl' => $thisLayoutImageUrl, 'backgroundType' => $thisLayoutBackgroundType, 'hzLinkMenuColor'=>$hzLinkMenuColor);
         $returnData = array('cards' => $allCardInstances, 'layout' => $layoutProperties, 'perms' => $thisLayoutPerms);
         return $returnData;
     }

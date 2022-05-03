@@ -371,8 +371,8 @@ class LayoutController extends Controller
             }else{
                 $backgroundColor = '';
             }
-            if(isset($layoutData['layout']['backGroundImageUrl'])){
-                $backgroundImageUrl = $layoutData['layout']['backGroundImageUrl'];
+            if(isset($layoutData['layout']['backgroundImageUrl'])){
+                $backgroundImageUrl = $layoutData['layout']['backgroundImageUrl'];
             }else{
                 $backgroundImageUrl = '';
             }
