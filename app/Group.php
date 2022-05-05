@@ -34,7 +34,7 @@ class Group extends Model
         }
     }
     public function setGroupLayout($groupId, $layoutId){
-        $query = "update perms set isLayoutGroup=1 where group_id = 1 and layout_id = ? ";
+        $query = "update perms set isLayoutGroup=1 where group_id = ? and layout_id = ? ";
         try {
             $queryResult = DB::select($query, [$groupId, $layoutId]);
         } catch (\Exception $e) {
