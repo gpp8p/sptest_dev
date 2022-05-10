@@ -43,17 +43,17 @@ class Group extends Model
 
     }
     public function returnPersonalGroupId($userId){
-        $query = "select groups.id from groups, users, usergroup ".
-                "where groups.group_label = users.email ".
-                "and usergroup.group_id = groups.id ".
-                "and usergroup.user_id = users.id ".
-                "and users.id = ?";
+        $query = "select groups.id from `groups`, users, usergroup ".
+            "where groups.group_label = users.email ".
+            "and usergroup.group_id = groups.id ".
+            "and usergroup.user_id = users.id ".
+            "and users.id = ?";
 
         $personalGroupId  =  DB::select($query, [$userId]);
         return $personalGroupId[0]->id;
     }
     public function returnAllUserGroupId(){
-        $query = "select id from groups where group_label = 'AllUsers'";
+        $query = "select id from `groups` where group_label = 'AllUsers'";
         $allUserGroupId = DB::select($query);
         return $allUserGroupId[0]->id;
 
@@ -102,31 +102,31 @@ class Group extends Model
 
     public function getUsersInGroup($groupId){
         $query = "select users.id, users.name, users.email, usergroup.is_admin from users, usergroup ".
-                "where users.id = usergroup.user_id ".
-                "and usergroup.group_id=?";
+            "where users.id = usergroup.user_id ".
+            "and usergroup.group_id=?";
         $users  =  DB::select($query, [$groupId]);
         return $users;
 
     }
 
     public function getGroupInfo($groupId){
-        $query = "select group_label, description from groups where id = ?";
+        $query = "select group_label, description from `groups` where id = ?";
         $groupInfo = DB::select($query, [$groupId]);
         return $groupInfo;
     }
 
     public function getOrganizationGroups($orgId, $userId, $layoutId){
-/*
-        $query = "select group_label, description, groups.id from groups, grouporg ".
-                "where grouporg.group_id = groups.id ".
-                "and grouporg.org_id = ?";
-*/
-        $query = "select group_label, description, groups.id from groups, grouporg ".
+        /*
+                $query = "select group_label, description, groups.id from groups, grouporg ".
+                        "where grouporg.group_id = groups.id ".
+                        "and grouporg.org_id = ?";
+        */
+        $query = "select group_label, description, groups.id from `groups`, grouporg ".
             "where grouporg.group_id = groups.id ".
             "and grouporg.org_id = ? ".
             "and groups.id NOT IN ( ".
             "select groups.id ".
-            "from groups, perms, users, usergroup, userorg, org ".
+            "from `groups`, perms, users, usergroup, userorg, org ".
             "where groups.id = perms.group_id ".
             "and usergroup.group_id = groups.id  ".
             "and usergroup.user_id = users.id ".
@@ -141,13 +141,13 @@ class Group extends Model
         return $groups;
     }
     public function allUserId(){
-        $query = "select id from groups where description='All Users'";
+        $query = "select id from `groups` where description='All Users'";
         $allUserGroupId  =  DB::select($query);
         return $allUserGroupId[0]->id;
     }
 
     public function findOrgGroups($orgId){
-        $query = "select distinct groups.id from groups, grouporg where groups.id in (select grouporg.group_id from grouporg where grouporg.org_id=?)  ";
+        $query = "select distinct groups.id from `groups`, grouporg where groups.id in (select grouporg.group_id from grouporg where grouporg.org_id=?)  ";
         $orgGroups = DB::select($query, [$orgId]);
         return $orgGroups;
     }
